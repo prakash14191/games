@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SU-DO-KU</title>
+    <link href="assets/css/sudoku.css" rel="stylesheet">
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/sudoku.js" type="text/javascript"></script>
+    <script src="assets/js/mysudoku.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="centre" style="padding: 10px 0px;">
+        <h2 class="centre">Solve this SUDOKU Puzzle</h2>
+        <table class="centre brd">
+            <tr id="row-1">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr id="row-2">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr class="brdr-bottom" id="row-3">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+
+            <tr id="row-4">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr id="row-5">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr class="brdr-bottom" id="row-6">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+
+            <tr id="row-7">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr id="row-8">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+            <tr id="row-9">
+                <td id="entry-1" posx="" posy=""></td>
+                <td id="entry-2" posx="" posy=""></td>
+                <td id="entry-3" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-4" posx="" posy=""></td>
+                <td id="entry-5" posx="" posy=""></td>
+                <td id="entry-6" posx="" posy="" class="brdr-side"></td>
+
+                <td id="entry-7" posx="" posy=""></td>
+                <td id="entry-8" posx="" posy=""></td>
+                <td id="entry-9" posx="" posy=""></td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div class="centre buttons">
+            <button onclick="restart_it()" > clear </button>
+            <button onclick="solve_it()" > solve </button>
+            <button onclick="check_solution()" > check </button>
+            <button onclick="generate(); restart_it();" > new </button>
+            <br><br>
+            <hr>
+            <footer> CREDITS: <a href="https://github.com/robatron/sudoku.js/">robatron/sudoku.js</a> </footer>
+        </div>
+    </div>
+</body>
+
+
+</html>

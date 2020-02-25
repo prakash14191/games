@@ -1,0 +1,94 @@
+body{
+    background-color: lightblue;
+}
+
+.centre{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: white;
+    display: block;
+}
+
+.brdr{
+    border: 1px dashed;
+    display: block;
+}
+
+h2{
+    font-family: monospace;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+table{
+    border-collapse: collapse;
+    border: 2px solid black;
+    max-width: 450px;
+}
+
+th,td{
+    border: 1px solid #999;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 25px;
+}
+
+td:hover, input:hover, td:hover input{
+    background-color: #FFA32E;
+    cursor: pointer;
+}
+
+.brdr-bottom td{
+    border-bottom: 2px solid;
+}
+
+td.brdr-side{
+    border-right: 2px solid;
+}
+
+td input{
+    max-width: 30px;
+    height: 50px;
+    text-align: center;
+    border: none;
+}
+
+input[readonly], td.readonly{
+    background-color: #DDD;
+}
+input[readonly]:hover, td.readonly:hover, td.readonly:hover input{
+    background-color: #DDD;
+}
+
+input[readonly]:hover {
+     cursor: not-allowed;
+}
+
+.buttons button{
+    border-radius: 15px;
+    background-color: lightblue;
+    width: 100px;
+    padding: 10px;
+}
+
+button:hover{
+    box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
+    background-color: #DDD;
+}
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
