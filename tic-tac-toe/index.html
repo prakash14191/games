@@ -3,34 +3,60 @@
 
 
 <head>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
+    <title>TIC-TAC-TOE</title>
     <style>
         body{
             font-family: monospace;
+            background-color: #f0f0f0;
+        }
+        .centre{
+            width: 60%;
+            margin-left: 20%;
+            margin-right: 20%;
+            background-color: white;
+            display: block;
+
+        }
+        .shadow{
+            /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
         canvas {
             border: 1px solid #d3d3d3;
-            background-color: #f1f1f1;
+            background-color: #14bdac;
             height: 300px;
             width: 300px;
             padding: 20px;
             cursor: pointer;
+            margin-left: 20%;
+            margin-right: 20%;
         }
         #player{
             background-color: sandybrown;
             padding: 3px;
             border-radius: 7px;
         }
+        div.footnotes{
+
+        }
     </style>
 </head>
 <body>
-    <h1>
-        Tic - Tac - Toe
-    </h1>
-    <p> <span id="player"> <img src="puli.png" width="25" /> Puli</span>'s turn</p>
-    <canvas id="playground">
+    <div class="centre shadow" style="padding: 10px 0px;">
+        <h1 class="centre" >
+            <u>Tic - Tac - Toe</u>
+        </h1>
+        <p class="centre" > <span id="player"> <img src="puli.png" width="25" /> Puli</span>'s turn</p>
+        <canvas id="playground">
+            
+        </canvas>
         
-    </canvas>
+        <div class="centre buttons" >
+            <hr>
+        <footer> CREDITS: Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></footer>
+        </div>
+    </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
 
