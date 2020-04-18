@@ -1,7 +1,7 @@
 window.params = {
     width: 10,
-    height: 10,
-    coins: 100,
+    height: 9,
+    coins: 90,
     coin_log: [],
     turn: 0
 }
@@ -45,7 +45,8 @@ function reveal_coin(){
         window.params.turn++;
         document.getElementById('status').innerHTML = window.params.turn;
 
-        alert(cur_coin);
+        document.getElementById("revealed").innerHTML = cur_coin;
+
     }
 }
 
@@ -61,45 +62,86 @@ function shuffle(aray) {
     return aray;
 }
 
+function zeros(dimensions) {
+    var array = [];
+    for (var i = 0; i < dimensions[0]; ++i) {
+        array.push(dimensions.length == 1 ? 0 : zeros(dimensions.slice(1)));
+    }
+    return array;
+}
+
 function generate_ticket(){
-    var result = [[], [], []];
-    var ticket_log = [];
-    var count = 0;
-    var cur_elem = 0;
-    for(count = 1; count <= 15; count++){
+    var result = zeros([3,9]);
+   for(count= 0; count<9; count++){
+      var  j = getRandomArbitrary(0,  3);
+      result[j][count]=1;
+    }
+  var sumRow =[0,0,0];
+  var rem_elemts=[5,5,5];
+  for (r=0; r< 3;r++){
+    sumRow[r]=0;
+    for (c=0; c<9; c++){
+        sumRow[r] = sumRow[r] + result[r][c];
+      }
+    rem_elemts[r]=5-sumRow[r];
+  }
 
-        cur_elem = getRandomArbitrary(1,  window.params.coins + 1);
-        while(ticket_log.indexOf(cur_elem) != -1){
-            cur_elem = getRandomArbitrary(1, window.params.coins + 1);
+  var all_sum=9;
+  while (all_sum < 15) {
+    var rand_row=getRandomArbitrary(0,  3);
+    var rand_col=getRandomArbitrary(0,  10);
+    result[rand_row][rand_col]=1;
+    all_sum=0;
+    for (r=0; r< 3;r++){
+      sumRow[r]=0;
+      for (c=0; c<9; c++){
+          sumRow[r]=sumRow[r]+result[r][c];
+          all_sum = all_sum + result[r][c];
         }
-        // console.log(cur_elem);
-        ticket_log.push(cur_elem);
-        if(count <=5 ){
-            result[0].push(cur_elem);
-        }else if(count <= 10){
-            result[1].push(cur_elem);
-        }else if(count <= 15){
-            result[2].push(cur_elem);
+        if (sumRow[r]>5)
+        { result[rand_row][rand_col]=0;
+          all_sum=all_sum-1
+          continue;
         }
     }
-    // console.log(ticket_log);
-    for(i = 0; i < 4; i++){
-        result[0].push('');
-        result[1].push('');
-        result[2].push('');
-    }
+  }
 
-    result[0] = shuffle(result[0]);
-    result[1] = shuffle(result[1]);
-    result[2] = shuffle(result[2]);
-    
+  for (c=0; c<9; c++){
+    //var col_log=[]
+    var curr_col=[]
+    for (r=0; r< 3;r++){
+      if (result[r][c]){
+        result[r][c]=getRandomArbitrary(c*10+1,c*10+11);
+        if (r==1){
+          while (result[r][c]==result[r-1][c]){
+            result[r][c]=getRandomArbitrary(c*10+1,c*10+11);
+          }
+        }
+        if (r==2){
+          while (result[r][c]==result[r-1][c] || result[r][c]==result[r-2][c]){
+            result[r][c]=getRandomArbitrary(c*10+1,c*10+11);
+          }
+        }
+      }
+      if (result[r][c]!=0){
+        curr_col.push(result[r][c])
+      }
+    }
+     curr_col.sort(function(a, b){return a - b});
+//     document.getElementById('testing').innerHTML = curr_col;
+     for (r=2; r>=0;r--){
+       if (result[r][c]!=0){
+         result[r][c]=curr_col.pop()
+       }
+     }
+  }
+
     var ticket = document.createElement("table");
-
     for(r = 0; r < 3; r++){
         var row = ticket.insertRow(r);
         for(c = 0; c < 9; c++){
             var cell = row.insertCell(c);
-            cell.innerHTML = result[r][c];
+            cell.innerHTML = result[r][c] > 0 ? result[r][c] : '';
         }
     }
     _tickets_panel = document.getElementById('tickets-start');

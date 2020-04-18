@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Minesweeper</title>
+    <title>Tambola/Housie</title>
     <style>
         body{
             font-family: monospace;
@@ -65,6 +65,7 @@
         <h1 class="centre" >
             <u>Housie</u>
         </h1>
+        <h1 id="revealed" style="text-align: center;"></h1>
         <p class="centre" > <span id="status"></span> coin(s) revealed</p>
         <table class="centre" id="playground">
         </table>
@@ -72,8 +73,9 @@
             <hr>
             <p class="" id="log">Reveal Sequence: </p>
             <hr>
-            <button onclick="reveal_coin()" > reveal </button>
-            <button onclick="generate_ticket()" > new ticket </button>
+            <button onclick="reveal_coin()" > Reveal </button>
+            <button onclick="generate_ticket()" > New ticket </button>
+            <p id='testing'></p>
             <br>
             <hr id="tickets-start">
         </div>
