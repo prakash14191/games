@@ -141,7 +141,7 @@ function generate_ticket(){
       }
     }
      curr_col.sort(function(a, b){return a - b});
-//     document.getElementById('testing').innerHTML = curr_col;
+     //document.getElementById('testing').innerHTML = curr_col;
      for (r=2; r>=0;r--){
        if (result[r][c]!=0){
          result[r][c]=curr_col.pop()
@@ -150,7 +150,6 @@ function generate_ticket(){
   }
 
     var ticket = document.createElement("table");
-
     for(r = 0; r < 3; r++){
         var row = ticket.insertRow(r);
         for(c = 0; c < 9; c++){
@@ -162,4 +161,20 @@ function generate_ticket(){
     _br = document.createElement('br');
     _tickets_panel.after(ticket);
     _tickets_panel.after(_br);
+}
+function Ticket_gen(){
+  window.open("Token_gen.html")
+}
+
+function print_ticket(id){
+  var ticket_content = document.getElementById('ticket-'+id);
+  var css_content = document.getElementById('mystyle');
+  var WinPrint = window.open('', '', 'left=0,top=0,width=300,height=100,toolbar=0,scrollbars=0,status=0');
+  WinPrint.document.write('<html><head>');
+  WinPrint.document.write(css_content.outerHTML);
+  WinPrint.document.write('</head><body onload="print();close();">');
+  WinPrint.document.write(ticket_content.outerHTML);
+  WinPrint.document.write('</body></html>');
+  WinPrint.document.close();
+  WinPrint.focus();
 }
