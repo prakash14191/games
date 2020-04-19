@@ -72,20 +72,33 @@ function zeros(dimensions) {
 
 function generate_ticket(){
     var result = zeros([3,9]);
+    for(count= 0; count<9; count++){
+      var  j = getRandomArbitrary(0,  3);
+      result[j][count]=1;
+    }
+    var sumRow=[0,0,0];
+    for (r=0; r< 3;r++){
+      sumRow[r]=0;
+      for (c=0; c<9; c++){
+        sumRow[r] = sumRow[r] + result[r][c];
+      }
+  }
+
+  while (sumRow[0]>5 || sumRow[1]>5 || sumRow[2]>5 ) {
+    result = zeros([3,9]);
    for(count= 0; count<9; count++){
       var  j = getRandomArbitrary(0,  3);
       result[j][count]=1;
     }
-  var sumRow =[0,0,0];
-  var rem_elemts=[5,5,5];
   for (r=0; r< 3;r++){
     sumRow[r]=0;
     for (c=0; c<9; c++){
         sumRow[r] = sumRow[r] + result[r][c];
       }
-    rem_elemts[r]=5-sumRow[r];
+  }
   }
 
+  var sumRow =[0,0,0];
   var all_sum=9;
   while (all_sum < 15) {
     var rand_row=getRandomArbitrary(0,  3);
@@ -137,6 +150,7 @@ function generate_ticket(){
   }
 
     var ticket = document.createElement("table");
+
     for(r = 0; r < 3; r++){
         var row = ticket.insertRow(r);
         for(c = 0; c < 9; c++){
