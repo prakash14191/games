@@ -3,7 +3,8 @@ window.params = {
     height: 9,
     coins: 90,
     coin_log: [],
-    turn: 0
+    turn: 0,
+    ticket_count: 0
 }
 
 for(i = 0; i < window.params.width*window.params.height; i++){
@@ -72,33 +73,38 @@ function zeros(dimensions) {
 
 function generate_ticket(){
     var result = zeros([3,9]);
-    for(count= 0; count<9; count++){
-      var  j = getRandomArbitrary(0,  3);
-      result[j][count]=1;
-    }
-    var sumRow=[0,0,0];
-    for (r=0; r< 3;r++){
-      sumRow[r]=0;
-      for (c=0; c<9; c++){
-        sumRow[r] = sumRow[r] + result[r][c];
-      }
-  }
-
-  while (sumRow[0]>5 || sumRow[1]>5 || sumRow[2]>5 ) {
-    result = zeros([3,9]);
    for(count= 0; count<9; count++){
       var  j = getRandomArbitrary(0,  3);
       result[j][count]=1;
     }
+  var sumRow =[0,0,0];
   for (r=0; r< 3;r++){
     sumRow[r]=0;
     for (c=0; c<9; c++){
         sumRow[r] = sumRow[r] + result[r][c];
       }
   }
+  var sumRow=[0,0,0];
+  for (r=0; r< 3;r++){
+    sumRow[r]=0;
+    for (c=0; c<9; c++){
+      sumRow[r] = sumRow[r] + result[r][c];
+    }
   }
 
-  var sumRow =[0,0,0];
+  while (sumRow[0]>5 || sumRow[1]>5 || sumRow[2]>5 ) {
+    result = zeros([3,9]);
+    for(count= 0; count<9; count++){
+      var  j = getRandomArbitrary(0,  3);
+      result[j][count]=1;
+    }
+    for (r=0; r< 3;r++){
+      sumRow[r]=0;
+      for (c=0; c<9; c++){
+          sumRow[r] = sumRow[r] + result[r][c];
+        }
+    }
+  }
   var all_sum=9;
   while (all_sum < 15) {
     var rand_row=getRandomArbitrary(0,  3);
@@ -141,15 +147,17 @@ function generate_ticket(){
       }
     }
      curr_col.sort(function(a, b){return a - b});
-     //document.getElementById('testing').innerHTML = curr_col;
+//     document.getElementById('testing').innerHTML = curr_col;
      for (r=2; r>=0;r--){
        if (result[r][c]!=0){
          result[r][c]=curr_col.pop()
        }
      }
   }
-
+    window.params.ticket_count++;
     var ticket = document.createElement("table");
+    ticket.setAttribute('id', 'ticket-'+window.params.ticket_count);
+    ticket.setAttribute('onclick', 'print_ticket('+ window.params.ticket_count +')');
     for(r = 0; r < 3; r++){
         var row = ticket.insertRow(r);
         for(c = 0; c < 9; c++){
@@ -161,9 +169,6 @@ function generate_ticket(){
     _br = document.createElement('br');
     _tickets_panel.after(ticket);
     _tickets_panel.after(_br);
-}
-function Ticket_gen(){
-  window.open("Token_gen.html")
 }
 
 function print_ticket(id){
@@ -177,4 +182,8 @@ function print_ticket(id){
   WinPrint.document.write('</body></html>');
   WinPrint.document.close();
   WinPrint.focus();
+}
+
+function Ticket_gen(){
+  window.open("Token_gen.html")
 }
