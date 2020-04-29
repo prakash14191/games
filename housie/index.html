@@ -5,13 +5,12 @@
 <head>
     <meta charset="utf-8">
     <title>Tambola/Housie</title>
-    <style>
+    <style id="mystyle">
         body{
             font-family: monospace;
             background-color: #f0f0f0;
         }
         #status{
-            background-color: sandybrown;
             padding: 3px;
             border-radius: 7px;
         }
@@ -71,11 +70,11 @@
         </table>
         <div class="centre buttons">
             <hr>
-            <p class="" id="log">Reveal Sequence: </p>
-            <hr>
             <button onclick="reveal_coin()" > Reveal </button>
             <button onclick="Ticket_gen()" > Tickets </button>
             <br>
+            <hr>
+            <p class="" id="log">Reveal Sequence: </p>
             <hr id="tickets-start">
         </div>
     </div>

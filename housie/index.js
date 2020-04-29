@@ -71,66 +71,104 @@ function zeros(dimensions) {
     return array;
 }
 
+function array_seq(ini_num, final_num){
+  var array=[]
+  for (i=0; i<=final_num-ini_num; i++){
+    array.push(ini_num+i);
+  }
+    return array;
+}
+
 function generate_ticket(){
+  var col_log=zeros(8,10);
+  for(c=0 ; c<8 ; c++){
+    col_log[c]=array_seq(c*10+11,c*10+20);
+    shuffle(col_log[c]);
+  }
+  col1=[1,2,3,4,5,6,7,8,9];
+  col1=shuffle(col1);
+  col8=[80,81,82,83,84,85,86,87,88,89,90];
+  col8=shuffle(col8);
+  //col1=col;
+  for (n_tickets=0; n_tickets<6;n_tickets++){
+  do{
     var result = zeros([3,9]);
-   for(count= 0; count<9; count++){
-      var  j = getRandomArbitrary(0,  3);
-      result[j][count]=1;
-    }
-  var sumRow =[0,0,0];
-  for (r=0; r< 3;r++){
-    sumRow[r]=0;
-    for (c=0; c<9; c++){
-        sumRow[r] = sumRow[r] + result[r][c];
+    var  idx_r=[];
+   for(r= 0; r<3; r++){
+     var j= getRandomArbitrary(0,9);
+      idx_r.push(j);
+      while (r>0 && (idx_r[r]==idx_r[r-1])){
+        idx_r[r]=getRandomArbitrary(0,9);
       }
-  }
-  var sumRow=[0,0,0];
-  for (r=0; r< 3;r++){
-    sumRow[r]=0;
-    for (c=0; c<9; c++){
-      sumRow[r] = sumRow[r] + result[r][c];
-    }
-  }
-
-  while (sumRow[0]>5 || sumRow[1]>5 || sumRow[2]>5 ) {
-    result = zeros([3,9]);
-    for(count= 0; count<9; count++){
-      var  j = getRandomArbitrary(0,  3);
-      result[j][count]=1;
-    }
-    for (r=0; r< 3;r++){
-      sumRow[r]=0;
-      for (c=0; c<9; c++){
-          sumRow[r] = sumRow[r] + result[r][c];
+      while (r==2 && (idx_r[2]==idx_r[1] || idx_r[2]==idx_r[0])){
+            idx_r[2]=getRandomArbitrary(0,9);
+      }
+      j= idx_r[r];
+      result[r][j]=1;
+      result[r][(j+1)%9]=1;
+      if (Math.random() <0.7){
+        for ( k=0; k<3; k++){
+          result[r][(j+2*k+3)%9]=1;
         }
-    }
-  }
-  var all_sum=9;
-  while (all_sum < 15) {
-    var rand_row=getRandomArbitrary(0,  3);
-    var rand_col=getRandomArbitrary(0,  10);
-    result[rand_row][rand_col]=1;
-    all_sum=0;
-    for (r=0; r< 3;r++){
-      sumRow[r]=0;
-      for (c=0; c<9; c++){
-          sumRow[r]=sumRow[r]+result[r][c];
-          all_sum = all_sum + result[r][c];
+      }
+      else {
+        do {
+          j2= getRandomArbitrary(0,9);
+        }while (!(j2 == (j+6)%9 || j2==(j+3)%9 || j2==(j+4)%9 || j2==(j+5)%9))
+        result[r][j2]=j2;
+        result[r][(j2+1)%9]=1;
+        if ((j2+3)%9 == j || (j2+4)%9 == j){
+          result[r][(j+3)%9]=1;
         }
-        if (sumRow[r]>5)
-        { result[rand_row][rand_col]=0;
-          all_sum=all_sum-1
-          continue;
+        else {
+            result[r][(j2+3)%9]=1;
         }
+      }
     }
-  }
-
+    var sumCol =zeros(1,9);
+    var flag=0;
+    for (c=0; c< 9;c++){
+      sumCol[c]=0;
+      for (r=0; r<3; r++){
+        sumCol[c] = sumCol[c] + result[r][c];
+      }
+      if (sumCol[c]==0 || sumCol[0]==3) {
+        flag=1;
+        continue;
+      }
+    }
+  }while(flag==1)
+//Assign numbers to the places specified
   for (c=0; c<9; c++){
     //var col_log=[]
     var curr_col=[]
     for (r=0; r< 3;r++){
       if (result[r][c]){
-        result[r][c]=getRandomArbitrary(c*10+1,c*10+11);
+        if (c==0){
+          if (col1.length!=0){
+            result[r][c]=col1.pop();
+          }
+          else {
+            result[r][c]=getRandomArbitrary(c*10,c*10+10);
+          }
+        }
+        else{
+          if(c==8) {
+            if (col8.length!=0){
+              result[r][c]=col8.pop();
+            }
+            else {
+              result[r][c]=getRandomArbitrary(c*10,c*10+11);
+            }
+          }
+          else {
+            if (col_log[c-1].length!=0)
+              result[r][c]=col_log[c-1].pop();
+            else {
+              result[r][c]=getRandomArbitrary(c*10,c*10+10);
+            }
+          }
+        }
         if (r==1){
           while (result[r][c]==result[r-1][c]){
             result[r][c]=getRandomArbitrary(c*10+1,c*10+11);
@@ -169,6 +207,7 @@ function generate_ticket(){
     _br = document.createElement('br');
     _tickets_panel.after(ticket);
     _tickets_panel.after(_br);
+}
 }
 
 function print_ticket(id){
