@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>Tambola/Housie</title>
-    <style>
+    <style id="mystyle">
         body{
             font-family: monospace;
             background-color: #f0f0f0;
@@ -42,19 +42,10 @@
         table tr:nth-child(even) td:nth-child(even), table tr:nth-child(odd) td:nth-child(odd){
             background-color: #a2d149;
         }
-        table#playground td:hover{
-            background-color: sandybrown;
-        }
-        table#playground td.reveal{
+        table td strike{
             background-color: #eee;
-        }
-        table#playground td.mine{
-            background-color: #ee1;
-        }
-        table#playground td.flag{
-            background-color: #f00;
-            background: url(flag.png);
-            background-size: 32px 32px;
+            border-radius: 20px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -68,6 +59,7 @@
             <br>
             <hr id="tickets-start">
         </div>
+        <p style="text-align: center"> Special credits to Anuraag T</p>
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
