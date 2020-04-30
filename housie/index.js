@@ -80,16 +80,15 @@ function array_seq(ini_num, final_num){
 }
 
 function generate_ticket(){
-  var col_log=zeros(8,10);
-  for(c=0 ; c<8 ; c++){
-    col_log[c]=array_seq(c*10+11,c*10+20);
+  var col_log=zeros([8,10]);
+  for(c=0 ; c<7 ; c++){
+    col_log[c]=array_seq(c*10+10,c*10+19);
     shuffle(col_log[c]);
   }
   col1=[1,2,3,4,5,6,7,8,9];
   col1=shuffle(col1);
   col8=[80,81,82,83,84,85,86,87,88,89,90];
   col8=shuffle(col8);
-  //col1=col;
   for (n_tickets=0; n_tickets<6;n_tickets++){
   do{
     var result = zeros([3,9]);
@@ -115,7 +114,7 @@ function generate_ticket(){
         do {
           j2= getRandomArbitrary(0,9);
         }while (!(j2 == (j+6)%9 || j2==(j+3)%9 || j2==(j+4)%9 || j2==(j+5)%9))
-        result[r][j2]=j2;
+        result[r][j2]=1;
         result[r][(j2+1)%9]=1;
         if ((j2+3)%9 == j || (j2+4)%9 == j){
           result[r][(j+3)%9]=1;
@@ -125,12 +124,14 @@ function generate_ticket(){
         }
       }
     }
-    var sumCol =zeros(1,9);
+    var sumCol =zeros([1,9]);
+    //var sumRow=zeros(1,3);
     var flag=0;
     for (c=0; c< 9;c++){
       sumCol[c]=0;
       for (r=0; r<3; r++){
         sumCol[c] = sumCol[c] + result[r][c];
+        //sumRow[r]=sumRow[r]+result[r][c];
       }
       if (sumCol[c]==0 || sumCol[0]==3) {
         flag=1;
@@ -140,7 +141,6 @@ function generate_ticket(){
   }while(flag==1)
 //Assign numbers to the places specified
   for (c=0; c<9; c++){
-    //var col_log=[]
     var curr_col=[]
     for (r=0; r< 3;r++){
       if (result[r][c]){
@@ -149,7 +149,7 @@ function generate_ticket(){
             result[r][c]=col1.pop();
           }
           else {
-            result[r][c]=getRandomArbitrary(c*10,c*10+10);
+            result[r][c]=getRandomArbitrary(c*10+1,c*10+10);
           }
         }
         else{
@@ -185,7 +185,6 @@ function generate_ticket(){
       }
     }
      curr_col.sort(function(a, b){return a - b});
-//     document.getElementById('testing').innerHTML = curr_col;
      for (r=2; r>=0;r--){
        if (result[r][c]!=0){
          result[r][c]=curr_col.pop()

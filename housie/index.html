@@ -7,7 +7,7 @@
     <title>Tambola/Housie</title>
     <style id="mystyle">
         body{
-            font-family: monospace;
+            font-family:"Times New Roman", Times, serif;
             background-color: #f0f0f0;
         }
         #status{
@@ -50,14 +50,6 @@
         table#playground td.reveal{
             background-color: #eee;
         }
-        table#playground td.mine{
-            background-color: #ee1;
-        }
-        table#playground td.flag{
-            background-color: #f00;
-            background: url(flag.png);
-            background-size: 32px 32px;
-        }
         table td strike{
             background-color: #eee;
             border-radius: 20px;
@@ -79,7 +71,7 @@
         <div class="centre buttons">
             <hr>
             <button onclick="reveal_coin()" > Reveal </button>
-            <button onclick="Ticket_gen()" > New ticket </button>
+            <button onclick="generate_ticket()" > New ticket </button>
             <br>
             <hr>
             <p class="" id="log">Reveal Sequence: </p>
